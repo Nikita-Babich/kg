@@ -8,6 +8,7 @@
 #include <stdio.h>
 
 #define print(arg) printf("%s = %lld \n", #arg, (long long int)arg)
+#define print_float(arg) printf(#arg " = %lf \n", (double)arg)
 //#define print2(arg) printf(#arg " = %lld \n",  arg)
 
 // Segment for PE - puzzle environment
@@ -26,7 +27,7 @@ int kg_pe_TakeDigit(natural n, int pos){ // pos uses indices starting with 1
 int kg_pe_GrowingNumberQ(natural n ){
 	int len = kg_pe_DigitAmount(n);
 	for (int i = 2; i<=len; i++){
-		if ( kg_pe_TakeDigit(n, i-1) >= kg_pe_TakeDigit(n, i) ){
+		if ( kg_pe_TakeDigit(n, i-1) > kg_pe_TakeDigit(n, i) ){
 			return 0;
 		}
 	}
@@ -35,7 +36,7 @@ int kg_pe_GrowingNumberQ(natural n ){
 int kg_pe_DescendingNumberQ(natural n ){
 	int len = kg_pe_DigitAmount(n);
 	for (int i = 2; i<=len; i++){
-		if ( kg_pe_TakeDigit(n, i-1) <= kg_pe_TakeDigit(n, i) ){
+		if ( kg_pe_TakeDigit(n, i-1) < kg_pe_TakeDigit(n, i) ){
 			return 0;
 		}
 	}
