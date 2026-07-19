@@ -25,17 +25,22 @@ int kg_pe_TakeDigit(natural n, int pos){ // pos uses indices starting with 1
 }
 int kg_pe_GrowingNumberQ(natural n ){
 	int len = kg_pe_DigitAmount(n);
-	int result = 1;
-	for (int i = 1; i<=len; i++){
-		if (!(kg_pe_TakeDigit(n, i-1) < kg_pe_TakeDigit(n, i))){
+	for (int i = 2; i<=len; i++){
+		if ( kg_pe_TakeDigit(n, i-1) >= kg_pe_TakeDigit(n, i) ){
 			return 0;
 		}
 	}
 	return 1;
 }
 int kg_pe_DescendingNumberQ(natural n ){
-	return 14;
+	int len = kg_pe_DigitAmount(n);
+	for (int i = 2; i<=len; i++){
+		if ( kg_pe_TakeDigit(n, i-1) <= kg_pe_TakeDigit(n, i) ){
+			return 0;
+		}
+	}
+	return 1;
 }
-inline int kg_pe_BouncyNumberQ(natural n){
+int kg_pe_BouncyNumberQ(natural n){
 	return ( !kg_pe_GrowingNumberQ( n ) ) && ( !kg_pe_DescendingNumberQ( n ) );
 }
