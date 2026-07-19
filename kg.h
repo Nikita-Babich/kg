@@ -4,12 +4,18 @@
 // Segment for FU - FREQUENTLY USED
 #include <stdarg.h>
 
+#include <stdlib.h>
+#include <time.h>
 #include <math.h>
 #include <stdio.h>
 
+
 #define print(arg) printf("%s = %lld \n", #arg, (long long int)arg)
 #define print_float(arg) printf(#arg " = %lf \n", (double)arg)
-//#define print2(arg) printf(#arg " = %lld \n",  arg)
+
+static time_t ___time_prev=0;
+#define track(n,s) if(time(0)>___time_prev+s){print(n); time(&___time_prev);};fflush(stdout);
+#define track_opt(n,s,k) if(n%k==0)track(n,s);
 
 // Segment for PE - puzzle environment
 #define natural long long int
