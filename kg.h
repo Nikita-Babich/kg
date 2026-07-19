@@ -12,18 +12,26 @@
 
 // Segment for PE - puzzle environment
 #define natural long long int
-int kg_pe_DigitAmount(natural n){
+#define not !
+int kg_pe_DigitAmount(natural n){ //
 	return (int)log10((double) n) + 1;
 }
-int kg_pe_TakeDigit(natural n, int index){
-	// Todo
+int kg_pe_TakeDigit(natural n, int pos){ // pos uses indices starting with 1
+	int len = kg_pe_DigitAmount(n);
+	int pos_from_right = len - pos;
+	natural left_slice = n / pow(10,pos_from_right) ;
+	int taken = left_slice % 10;
+	return taken;
 }
 int kg_pe_GrowingNumberQ(natural n ){
 	int len = kg_pe_DigitAmount(n);
+	int result = 1;
 	for (int i = 1; i<=len; i++){
-		
+		if (!(kg_pe_TakeDigit(n, i-1) < kg_pe_TakeDigit(n, i))){
+			return 0;
+		}
 	}
-	return 14;
+	return 1;
 }
 int kg_pe_DescendingNumberQ(natural n ){
 	return 14;
